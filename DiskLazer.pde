@@ -1,5 +1,3 @@
-//学籍番号:11671040 氏名:川崎智憲
-
 //プレイヤーボールの各座標
 int vx = 5;
 int vy = 5;
@@ -31,9 +29,9 @@ void setup(){
   size(1250,700);//画面サイズ指定
   ellipseMode(CENTER);
   smooth();//なめらかに描写
-  
+
   textAlign(CENTER);//文字の位置設定を中央指定にする
-  
+
   //弾幕の初期位置設定
   for(int i = 0;i<x_dan.length;i++){
     x_dan[i]=random(1300,3000);
@@ -77,11 +75,11 @@ int title(){
     return 1; // start game
   }
   if(keyPressed && key == 'h'){ //ｈキーを押すと説明画面へ
-    return 3; // 
+    return 3; //
   }
   return 0;//再びタイトル画面へ
 }
-//ゲーム画面 
+//ゲーム画面
 int game(){
   //ボールの移動範囲を制限
   mouseX=constrain(mouseX,25,1050);
@@ -100,8 +98,8 @@ int game(){
   line(850,0,850,50);
   fill(255,255,0);
   rect(900,12,hp_en,30);
-  
-  
+
+
   //自分のボールの描写
   for(int i=x.length-1;i>0;i--){
     x[i] = x[i-1];//配列を一個前へ移動させる
@@ -122,7 +120,7 @@ int game(){
     }
     ellipse(x[i],y[i],r,r);
     fill(0,125,255,100-i*6.1);
-    
+
     if(hp_pl<150){//HPが半分以下になると色が変わる
       fill(255,180,0,100-i*6.1);
     }
@@ -131,9 +129,9 @@ int game(){
     }
     ellipse(x[i],y[i],r*0.8,r*0.8);
   }
-  
+
   //敵ボールの追跡の描写
-  stroke(255,125,0);  
+  stroke(255,125,0);
   fill(255,125,0,50);
   ellipse(x_en,y_en,30,30);
   fill(255,125,0);
@@ -164,10 +162,10 @@ int game(){
       y_en+=-speed;
     }
   }
-  
-  
+
+
   //レーザーの描写
-  if(mousePressed){    
+  if(mousePressed){
     if(mouseButton==LEFT){//マウスの左を押している時、
       stroke(0,255,255);
       if(hp_pl<150){//自分のHPが半分以下だとレーザーの色も変化
@@ -177,7 +175,7 @@ int game(){
       }
       line(mouseX+30,mouseY-20,mouseX+350,mouseY-20);
       line(mouseX+30,mouseY+20,mouseX+350,mouseY+20);
-      
+
       fill(0,255,255,70);
       if(hp_pl<150){//自分のHPが半分以下だとレーザーの色も変化
         fill(255,240,0,70);
@@ -200,7 +198,7 @@ int game(){
       }
     }
   }
-  
+
   //弾幕の描写
   if(hp_pl<150){
     comand=true;
@@ -232,8 +230,8 @@ int game(){
       }
     }
   }
-  
-  
+
+
   //敵ボスの描写
   fill(125,0,225);
   noStroke();
@@ -247,10 +245,10 @@ int game(){
       hp_en+=2;
     }
   }
-  //歯車の描写 
+  //歯車の描写
   stroke(0);
   translate(1250,350);//四角形を回転させるため、中心座標を移動させる
-  
+
   rotate(radians(frameCount));//フレームのカウント数に合わせて回転
   rect(-175,-20,350,40);
   rect(-20,-175,40,350);
@@ -262,9 +260,9 @@ int game(){
   ellipse(0,0,250,250);
   fill(125,0,255);
   ellipse(0,0,100,100);
-  
-  
-  
+
+
+
   if(hp_pl==0){//自分のHPが0になるとゲームオーバー
     return 2;
   }
@@ -331,13 +329,13 @@ int howto(){
   ellipse(200,200,50,50);
   fill(0,255,255);
   ellipse(200,200,40,40);
-  
+
   textAlign(LEFT);//文字を左に揃える
   textSize(40);
   fill(255);
   text("Please control by mouse pointer", 250, 210);
   text("You have a Laser rifle.", 250, 250);
-  
+
   //敵の説明
   fill(255);
   text("Enemys", 180, 300);
@@ -351,14 +349,14 @@ int howto(){
   ellipse(300,340,30,30);
   fill(255,0,102);
   ellipse(300,340,20,20);
-  
+
   fill(255);
   text("They are invulnerable...Please avoid them!",250,410);
-  
+
   fill(255);
   text("Start:'s' Button", width*0.75, 650);
   if(keyPressed && key == 's'){ //ｓキーを押すとゲームスタート
-    return 1; 
+    return 1;
   }
   //ボスの説明
   fill(255);
@@ -378,7 +376,7 @@ int howto(){
   }
   stroke(0);
   translate(250,550);//四角形を回転させるため、中心座標を移動させる
-  
+
   rotate(radians(frameCount));//フレームのカウント数に合わせて回転
   rect(-175*0.5,-20*0.5,350*0.5,40*0.5);
   rect(-20*0.5,-175*0.5,40*0.5,350*0.5);
@@ -392,6 +390,3 @@ int howto(){
   ellipse(0,0,100*0.5,100*0.5);
   return 3;//再び説明画面に戻る
 }
-
-
-  
